@@ -1,33 +1,32 @@
 package com.example.desginpatternstudy;
 
-import java.io.*;
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App {
-    public static void main(String[] args) throws Exception{
-        Settings settings1 = Settings.INSTANCE;
-        Settings settings2 = null;
-        try (ObjectOutput out = new ObjectOutputStream(new FileOutputStream("settings.obj"))){
-            out.writeObject(settings1);
-        }
-        try (ObjectInput in = new ObjectInputStream(new FileInputStream("settings.obj"))){
-            settings2 = (Settings) in.readObject();
-        }
-        System.out.println(settings1 == settings2); // -> true
+    public static void main(String[] args) {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        String hello1 = applicationContext.getBean("hello", String.class);
+        String hello2 = applicationContext.getBean("hello", String.class);
+        System.out.println(hello1 == hello2); // true
+        String hello3 = new String("hello");
+        String hello4 = new String("hello");
+        System.out.println(hello3 != hello4); // true 힙에 각각 다른 참조를 가지고 저장
+
+        String hello5 = "hello";
+        String hello6 = "hello";
+        System.out.println(hello5 == hello6); // true String Constant Pool(힙 메모리 일부)
+
+        System.out.println(hello1 == hello5); // true 결국 ApplicationContext 내에 있는 리터럴 또한 상수 풀에 존재
     }
 }
-/*
-리플렉션에 안전 -> IllegalArgumentException: Cannot reflectively create enum objects
+/* Runtime
 public class App {
-    public static void main(String[] args) throws Exception{
-        Settings settings1 = Settings.INSTANCE;
-        Settings settings2 = null;
-        Constructor<?>[] constructors = Settings.class.getDeclaredConstructors();
-        for (Constructor<?> constructor : constructors) {
-            constructor.setAccessible(true);
-            settings2 = (Settings) constructor.newInstance("INSTANCE");
-        }
+    public static void main(String[] args) {
+        Runtime runtime = Runtime.getRuntime();
+        // new Runtime(); private 생성자
+        System.out.println(runtime.maxMemory());
+        System.out.println(runtime.freeMemory());
     }
 }
  */
