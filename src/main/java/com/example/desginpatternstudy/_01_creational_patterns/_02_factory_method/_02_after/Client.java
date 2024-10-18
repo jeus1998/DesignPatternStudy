@@ -2,11 +2,12 @@ package com.example.desginpatternstudy._01_creational_patterns._02_factory_metho
 
 public class Client {
     public static void main(String[] args) {
-        WhiteShipFactory whiteShipFactory = new WhiteShipFactory();
-        BlackShipFactory blackShipFactory = new BlackShipFactory();
-        WhiteShip whiteShip = (WhiteShip) whiteShipFactory.orderShip("whiteShip", "client1@naver.com");
-        BlackShip blackShip = (BlackShip) blackShipFactory.orderShip("blackShip", "client2@naver.com");
-        System.out.println(whiteShip);
-        System.out.println(blackShip);
+         Client client1 = new Client();
+         Client client2 = new Client();
+         client1.print(new WhiteShipFactory(), "whiteShip", "client1@naver.com");
+         client2.print(new BlackShipFactory(), "blackShip", "client2@naver.com");
+    }
+    private void print(ShipFactory shipFactory, String name, String email){
+        System.out.println(shipFactory.orderShip(name, email));
     }
 }
