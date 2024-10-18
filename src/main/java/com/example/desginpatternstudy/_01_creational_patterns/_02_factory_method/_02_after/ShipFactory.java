@@ -9,7 +9,7 @@ public interface ShipFactory {
         return ship;
     }
     Ship createShip(String name); // 하위 클래스에 생성을 위임
-    private static void sendEmailTo(String email, Ship ship) {
+    private void sendEmailTo(String email, Ship ship) {
         System.out.println(email + " send message: " + ship.getName() + " 다 만들었습니다.");
     }
     private void prepareFor(String name){
