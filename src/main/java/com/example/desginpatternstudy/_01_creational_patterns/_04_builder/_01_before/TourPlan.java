@@ -3,7 +3,6 @@ package com.example.desginpatternstudy._01_creational_patterns._04_builder._01_b
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter @ToString
@@ -14,7 +13,7 @@ public class TourPlan {
     private int days;
     private LocalDate startDate;
     private String whereToStay;
-    private List<DetailPlan> plans = new ArrayList<>();
+    private List<DetailPlan> plans;
     public void addPlan(int day, String plan){
         plans.add(new DetailPlan(day, plan));
     }
