@@ -30,7 +30,7 @@ public class PostFixNotation {
         System.out.println(numbers.peek());
     }
     public static void main(String[] args) {
-        PostFixNotation postFixNotation = new PostFixNotation("555++");
+        PostFixNotation postFixNotation = new PostFixNotation("123+-");
         postFixNotation.calculate();
     }
 }
