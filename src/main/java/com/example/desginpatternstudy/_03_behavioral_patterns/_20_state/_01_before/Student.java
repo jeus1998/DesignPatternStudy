@@ -1,4 +1,4 @@
-package com.example.desginpatternstudy._03_behavioral_patterns._20_sate._01_before;
+package com.example.desginpatternstudy._03_behavioral_patterns._20_state._01_before;
 import java.util.*;
 
 public class Student {
