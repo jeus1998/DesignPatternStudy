@@ -1,6 +1,5 @@
-package com.example.desginpatternstudy._03_behavioral_patterns._20_sate._02_after;
+package com.example.desginpatternstudy._03_behavioral_patterns._20_state._02_after;
 
-import lombok.AllArgsConstructor;
 import lombok.ToString;
 
 import java.util.HashSet;
